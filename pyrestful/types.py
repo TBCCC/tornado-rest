@@ -30,6 +30,8 @@ def convert(value, type):
 	if issubclass(type,str) and not (value.upper() in ['FALSE','TRUE']):
 		return value.decode('utf-8')
 	elif issubclass(type,unicode):
+		if isinstance(value, bytes):
+			return unicode(value, encoding="utf-8")
 		return unicode(value)
 	elif issubclass(type,int):
 		return int(value)
